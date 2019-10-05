@@ -34,7 +34,11 @@ module TransferWise
     attr_accessor :access_token
 
     def api_base
-      @api_base ||= "https://#{mode == 'live' ? 'api' : 'test-api'}.transferwise.com"
+      api_base ||= if mode == 'live'
+        "https://api.transferwise.com"
+      else
+        "https://api.sandbox.transferwise.tech"
+      end
     end
   end
 end
